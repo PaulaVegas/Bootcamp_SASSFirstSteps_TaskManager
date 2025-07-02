@@ -1,19 +1,23 @@
-const express = require('express')
-const app = express()
-const { dbConnection } = require('./dbconfig')
-require('dotenv').config()
+const express = require("express");
+const cors = require("cors");
+const app = express();
+const { dbConnection } = require("./dbconfig");
+require("dotenv").config();
 
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
-dbConnection()
+dbConnection();
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3001;
 
-const swaggerUI = require('swagger-ui-express')
-const docs = require('./docs/index')
+const swaggerUI = require("swagger-ui-express");
+const docs = require("./docs/index");
 
-app.use('/task', require('./routes/task'))
+app.use("/task", require("./routes/task"));
 
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(docs))
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(docs));
 
-app.listen(PORT, () => console.log('puerto ok'))
+app.listen(PORT, () =>
+	console.log("Database connected and server running on port", PORT)
+);
