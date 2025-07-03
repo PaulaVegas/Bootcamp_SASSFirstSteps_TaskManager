@@ -5,7 +5,12 @@ import {
   createTask,
   completeTask,
   deleteTask,
+  uncompleteTask
 } from "../services/taskService"
+import CheckIcon from "../assets/icons/check.png"
+import DeleteIcon from "../assets/icons/bin.png"
+import UncompleteIcon from "../assets/icons/back.png"
+import AddIcon from "../assets/icons/add.png"
 
 export default function TaskApp() {
   const [tasks, setTasks] = useState([])
@@ -47,13 +52,24 @@ export default function TaskApp() {
     sparkle.style.setProperty('--dy', `${(Math.random() - 0.5) * 40}px`)
     sparklesContainer.appendChild(sparkle)
   }
-
   setTimeout(async () => {
     sparklesContainer.remove()
     await completeTask(id)
     loadTasks()
   }, 600)
 }
+
+const handleUncomplete = async (id) => {
+  const li = document.getElementById(id)
+  if (li) {
+    li.classList.add("task-uncompleted")
+  }
+  await uncompleteTask(id)
+  setTimeout(() => {
+    loadTasks()
+  }, 400)
+}
+
 const handleDelete = async (id) => {
   const li = document.getElementById(id)
   if (!li) {
@@ -85,11 +101,11 @@ const handleDelete = async (id) => {
             }
           }}
         />
-        <button className="button-primary" onClick={handleAddTask}>Add</button>
+        <button className="button-primary" onClick={handleAddTask}> <img src={AddIcon} className="icon" /> </button>
       </div>
 
 <section className="task-section">
-      <h2>To-Do: {tasks.filter(task => !task.completed).length}</h2>
+      <h2>To Do - {tasks.filter(task => !task.completed).length}</h2>
       <ul className="task-list">
         {tasks
           .filter(task => !task.completed)
@@ -100,15 +116,15 @@ const handleDelete = async (id) => {
                 className={task._id === newTaskId ? "task-new" : ""}
               >
               <span>{task.title}</span>
-              <button onClick={() => handleComplete(task._id)}> ✔️</button>
-              <button onClick={() => handleDelete(task._id)}> 🗑️</button>
+              <button onClick={() => handleComplete(task._id)}>  <img src={CheckIcon} alt="Complete" className="icon" /></button>
+              <button onClick={() => handleDelete(task._id)}> <img src={DeleteIcon} alt="Delete" className="icon" /></button>
             </li>
           ))}
       </ul>
     </section>
 
     <section className="task-section">
-      <h2>Done: {tasks.filter(task => task.completed).length}</h2>
+      <h2>Done - {tasks.filter(task => task.completed).length}</h2>
       <ul className="task-list">
         {tasks
           .filter(task => task.completed)
@@ -117,7 +133,8 @@ const handleDelete = async (id) => {
               <span style={{ textDecoration: "line-through" }}>
                 {task.title}
               </span>
-              <button onClick={() => handleDelete(task._id)}> 🗑️</button>
+              <button onClick={() => handleUncomplete(task._id)}> <img src={UncompleteIcon} alt="Uncomplete" className="icon" /></button>
+              <button onClick={() => handleDelete(task._id)}> <img src={DeleteIcon} alt="Delete" className="icon" /></button>
             </li>
           ))}
       </ul>

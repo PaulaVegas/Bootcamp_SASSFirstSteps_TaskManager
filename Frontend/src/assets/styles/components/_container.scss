@@ -143,3 +143,12 @@
   animation: fadeInUp 0.5s ease forwards;
 }
 }
+@keyframes uncomplete-bounce {
+  0%   { transform: scale(0.8); opacity: 0.5; }
+  50%  { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.task-uncompleted {
+  animation: uncomplete-bounce 0.4s ease-out;
+}

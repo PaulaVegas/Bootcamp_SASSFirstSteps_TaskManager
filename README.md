@@ -6,3 +6,5 @@
 ![Made with JavaScript](https://img.shields.io/badge/Made%20with-JavaScript-yellow?logo=javascript)
 ![Visual Studio Code](https://img.shields.io/badge/Editor-VSCode-blue?logo=visualstudiocode)
 ![Documented with Swagger](https://img.shields.io/badge/Documented%20with-Swagger-85EA2D?logo=swagger&logoColor=black)
+
+![Demo](./Frontend/src/assets/demo.gif)

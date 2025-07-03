@@ -43,3 +43,10 @@ export const deleteTask = async (id) => {
 	});
 	return await res.json();
 };
+
+export const uncompleteTask = async (id) => {
+	const res = await fetch(`http://localhost:3001/task/uncomplete/${id}`, {
+		method: "PATCH",
+	});
+	return res.json();
+};
