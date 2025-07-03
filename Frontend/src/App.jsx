@@ -16,13 +16,20 @@ function App() {
   return (
     <div className="App">
       <header>
-        <button className="button-primary" onClick={toggleTheme}>
-           {theme === 'dark' ? 'Light' : 'Dark'} Mode
-        </button>
+        <label className="switch">
+          <input
+            type="checkbox"
+            checked={theme === 'light'}
+            onChange={toggleTheme}
+          />
+          <span className="slider">
+            <span className='icon sun'>🌞</span>
+            <span className='icon moon'>🌙</span>
+          </span>
+        </label>
       </header>
       <TaskApp />
     </div>
   )
 }
-
 export default App

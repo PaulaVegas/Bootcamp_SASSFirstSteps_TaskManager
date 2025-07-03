@@ -1,8 +1,10 @@
 @import "abstracts/_colors";
 @import 'abstracts/mixins';
 @import 'base/reset';
+@import 'base/_fonts';
 @import 'themes/_themes';
 // @import 'layout/';
+@import 'components/_switch';
 @import 'components/_container';
 @import 'components/_buttons';
 // @import 'pages/';
