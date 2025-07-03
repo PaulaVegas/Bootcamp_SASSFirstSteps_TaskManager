@@ -1,4 +1,4 @@
-import "../styles/TaskApp.scss"
+import "../assets/styles/main.scss"
 import { useEffect, useState } from "react"
 import {
   getAllTasks,
@@ -28,8 +28,13 @@ export default function TaskApp() {
   }
 
   const handleComplete = async (id) => {
-    await completeTask(id)
-    loadTasks()
+    const li = document.getElementById(id)
+    if (!li) return;
+    li.classList.add("completed-animate")
+    setTimeout(async () => {
+      await completeTask(id)
+      loadTasks()
+    }, 300) 
   }
 
   const handleDelete = async (id) => {
@@ -38,26 +43,31 @@ export default function TaskApp() {
   }
 
   return (
-    <div className="task-app">
-      <h1>Mis Tareas</h1>
+    <div className="my-container">
+      <h1>To Do</h1>
 
-      <div>
-        <input
+      <div className="task-input">
+        <input type="text"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
-          placeholder="Nueva tarea"
+          placeholder="New task"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleAddTask()
+            }
+          }}
         />
-        <button onClick={handleAddTask}>Añadir</button>
+        <button className="button-primary" onClick={handleAddTask}>Add</button>
       </div>
 
-      <ul>
+      <ul className="task-list">
         {tasks.map((task) => (
-          <li key={task._id}>
+          <li key={task._id} id={task._id}>
             <span style={{ textDecoration: task.completed ? "line-through" : "none" }}>
               {task.title}
             </span>
-            <button onClick={() => handleComplete(task._id)}>✔️</button>
-            <button onClick={() => handleDelete(task._id)}>🗑️</button>
+            <button onClick={() => handleComplete(task._id)}> ✔️</button>
+            <button onClick={() => handleDelete(task._id)}> 🗑️</button>
           </li>
         ))}
       </ul>
