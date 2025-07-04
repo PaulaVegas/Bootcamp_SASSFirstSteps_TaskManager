@@ -1,6 +1,8 @@
 import React, { useEffect, useState }from 'react'
 import TaskApp from './components/TaskApp'
 import './App.css'
+import SunIcon from "./assets/icons/sun.png"
+import MoonIcon from "./assets/icons/moon.png"
 
 function App() {
  const [theme, setTheme] = useState('dark') 
@@ -23,8 +25,8 @@ function App() {
             onChange={toggleTheme}
           />
           <span className="slider">
-            <span className='icon sun'>🌞</span>
-            <span className='icon moon'>🌙</span>
+            <span className='icon sun'><img src={SunIcon} className="icon" alt="Sun Icon" /></span>
+            <span className='icon moon'><img src={MoonIcon} className="icon" alt="Moon Icon" /></span>
           </span>
         </label>
       </header>

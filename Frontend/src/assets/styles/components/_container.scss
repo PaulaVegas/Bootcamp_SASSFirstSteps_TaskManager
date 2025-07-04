@@ -68,6 +68,7 @@
     }
   }
 }
+
 .task-section + .task-section {
   margin-top: 2rem;
 }
@@ -90,6 +91,7 @@
 .completed-animate {
   animation: completeAnimation 0.3s ease forwards;
 }
+
 @keyframes sparkle {
   0% {
     opacity: 1;
@@ -100,12 +102,13 @@
     transform: translate(var(--dx), var(--dy)) scale(0);
   }
 }
+
 .sparkle {
   position: absolute;
   width: 6px;
   height: 6px;
-  background: #f6e425; 
-  border-radius: 50%;
+  background: var(--primary-color); 
+  border-radius: 40%;
   animation: sparkle 1.5s forwards;
   pointer-events: none;
 }
@@ -114,6 +117,7 @@
   position: relative;
   display: inline-block;
 }
+
 @keyframes deleteAnimation {
   0% {
     opacity: 1;
@@ -128,6 +132,7 @@
 .delete-animate {
   animation: deleteAnimation 0.4s forwards;
 }
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -142,7 +147,7 @@
 .task-new {
   animation: fadeInUp 0.5s ease forwards;
 }
-}
+
 @keyframes uncomplete-bounce {
   0%   { transform: scale(0.8); opacity: 0.5; }
   50%  { transform: scale(1.1); opacity: 1; }
@@ -151,4 +156,5 @@
 
 .task-uncompleted {
   animation: uncomplete-bounce 0.4s ease-out;
+}
 }
