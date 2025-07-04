@@ -65,7 +65,7 @@
       &:hover {
         opacity: 0.8;
       }
-    }
+
   }
 }
 
@@ -156,5 +156,14 @@
 
 .task-uncompleted {
   animation: uncomplete-bounce 0.4s ease-out;
+}
+.task-title {
+        font-size: 1rem;
+
+        &.completed {
+        text-decoration: line-through;
+        color: var(--completed-color);
+      } 
+    }
 }
 }

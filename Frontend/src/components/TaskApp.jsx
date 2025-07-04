@@ -12,6 +12,7 @@ import DeleteIcon from "../assets/icons/bin.png"
 import UncompleteIcon from "../assets/icons/back.png"
 import AddIcon from "../assets/icons/add.png"
 
+
 export default function TaskApp() {
   const [tasks, setTasks] = useState([])
   const [newTask, setNewTask] = useState("")
@@ -125,12 +126,12 @@ const handleDelete = async (id) => {
 
     <section className="task-section">
       <h2>Done - {tasks.filter(task => task.completed).length}</h2>
-      <ul className="task-list">
+      <ul className="task-list completed">
         {tasks
           .filter(task => task.completed)
           .map(task => (
             <li key={task._id} id={task._id}>
-              <span style={{ textDecoration: "line-through" }}>
+              <span className="task-title completed">
                 {task.title}
               </span>
               <button onClick={() => handleUncomplete(task._id)}> <img src={UncompleteIcon} alt="Uncomplete" className="icon" /></button>
